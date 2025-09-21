@@ -3,84 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Drag and Drop</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f0f0f0;
-      margin: 0;
-    }
-
-    .container {
-      display: flex;
-      gap: 20px;
-    }
-
-    .drag-item, .drop-zone {
-      width: 150px;
-      height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid #000;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .drag-item {
-      cursor: move;
-      background-color: #cce7ff;
-    }
-
-    .drop-zone {
-      border-dashed: 2px;
-      background-color: #e2f3ff;
-    }
-
-    .dragging {
-      opacity: 0.5;
-    }
-  </style>
+  <title>Tourist Paradise</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header>
+    <div class="navbar">
+      <h1>Tourist Paradise</h1>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <div class="container">
-    <div class="drag-item" id="drag-item" draggable="true">Drag Me</div>
-    <div class="drop-zone" id="drop-zone">Drop Here</div>
-  </div>
+  <section id="about">
+    <h2>Welcome to the Tourist Paradise!</h2>
+    <p>Explore the wonders of our beautiful destination. Enjoy the scenic views, the culture, and the food.</p>
+    <img src="https://via.placeholder.com/600x400" alt="Tourist Destination">
+  </section>
 
-  <script>
-    const dragItem = document.getElementById('drag-item');
-    const dropZone = document.getElementById('drop-zone');
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br>
 
-    // When the drag starts
-    dragItem.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text', 'drag-item');
-      dragItem.classList.add('dragging');
-    });
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br>
 
-    // When the drag ends
-    dragItem.addEventListener('dragend', () => {
-      dragItem.classList.remove('dragging');
-    });
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea><br>
 
-    // Prevent default behavior for the drop zone to allow drops
-    dropZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-    });
+      <button type="submit">Send Message</button>
+    </form>
+    <div id="response"></div>
+  </section>
 
-    // Handle the drop event
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.appendChild(dragItem);
-      dragItem.classList.remove('dragging');
-    });
-  </script>
+  <footer>
+    <p>&copy; 2025 Tourist Paradise</p>
+  </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
