@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Drag and Drop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .drag-item, .drop-zone {
+      width: 150px;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #000;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .drag-item {
+      cursor: move;
+      background-color: #cce7ff;
+    }
+
+    .drop-zone {
+      border-dashed: 2px;
+      background-color: #e2f3ff;
+    }
+
+    .dragging {
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="drag-item" id="drag-item" draggable="true">Drag Me</div>
+    <div class="drop-zone" id="drop-zone">Drop Here</div>
+  </div>
+
+  <script>
+    const dragItem = document.getElementById('drag-item');
+    const dropZone = document.getElementById('drop-zone');
+
+    // When the drag starts
+    dragItem.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text', 'drag-item');
+      dragItem.classList.add('dragging');
+    });
+
+    // When the drag ends
+    dragItem.addEventListener('dragend', () => {
+      dragItem.classList.remove('dragging');
+    });
+
+    // Prevent default behavior for the drop zone to allow drops
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+
+    // Handle the drop event
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.appendChild(dragItem);
+      dragItem.classList.remove('dragging');
+    });
+  </script>
+
+</body>
+</html>
